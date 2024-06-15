@@ -1,0 +1,4 @@
+- separate consumer interfaces from rewrites cache storage
+- separate rewrites domain structs and cache storage
+- separate rewrites pages back into components/
+- ? move handlers to respective components
