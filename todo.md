@@ -2,3 +2,4 @@
 - separate rewrites domain structs and cache storage
 - separate rewrites pages back into components/
 - ? move handlers to respective components
+- ? prefix ips to nextdns requests?
