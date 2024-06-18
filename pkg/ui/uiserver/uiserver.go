@@ -11,7 +11,6 @@ import (
 	"github.com/awryme/dnsproxy/pkg/ui/staticfiles"
 	"github.com/awryme/slogf"
 	"github.com/go-chi/chi/v5"
-	"github.com/maragudk/gomponents"
 	slogchi "github.com/samber/slog-chi"
 )
 
@@ -60,15 +59,6 @@ func Start(ctx context.Context, logHandler slog.Handler, params Params) error {
 		return fmt.Errorf("run UI server failed on addr %s: %w", listenAddr, err)
 	}
 	return nil
-}
-
-func renderComponent(logf slogf.Logf, w http.ResponseWriter, comp gomponents.Node) {
-	err := comp.Render(w)
-	if err != nil {
-		logf("failed to render component", slogf.Error(err))
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
 }
 
 func useChiLogger(mux chi.Router, handler slog.Handler) {

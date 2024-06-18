@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/awryme/dnsproxy/pkg/rewrites"
+	"github.com/awryme/dnsproxy/pkg/ui"
 	"github.com/awryme/dnsproxy/pkg/ui/components/addrcomponents"
 	"github.com/awryme/slogf"
 	"github.com/go-chi/chi/v5"
@@ -27,8 +28,8 @@ func HandlerAddAddr(logf slogf.Logf, rewritesStorage *rewrites.CacheStorage) htt
 			return
 		}
 		addrs := rewritesStorage.GetAddrs()
-		renderComponent(logf, w, addrcomponents.Panel(addrs))
-		renderComponent(logf, w, addrcomponents.Selector(addrs))
+		ui.RenderComponent(logf, w, addrcomponents.Panel(addrs))
+		ui.RenderComponent(logf, w, addrcomponents.Selector(addrs))
 	}
 }
 
@@ -42,7 +43,7 @@ func HandlerDeleteAddr(logf slogf.Logf, rewritesStorage *rewrites.CacheStorage) 
 			return
 		}
 		addrs := rewritesStorage.GetAddrs()
-		renderComponent(logf, w, addrcomponents.Panel(addrs))
-		renderComponent(logf, w, addrcomponents.Selector(addrs))
+		ui.RenderComponent(logf, w, addrcomponents.Panel(addrs))
+		ui.RenderComponent(logf, w, addrcomponents.Selector(addrs))
 	}
 }

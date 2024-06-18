@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/awryme/dnsproxy/pkg/rewrites"
+	"github.com/awryme/dnsproxy/pkg/ui"
 	"github.com/awryme/dnsproxy/pkg/ui/components/rewritecomponents"
 	"github.com/awryme/slogf"
 	"github.com/go-chi/chi/v5"
@@ -31,7 +32,7 @@ func HandlerAddRewrite(logf slogf.Logf, rewritesStorage *rewrites.CacheStorage) 
 		}
 		addrs := rewritesStorage.GetAddrs()
 		rewrites := rewritesStorage.GetRewrites()
-		renderComponent(logf, w, rewritecomponents.PanelAll(addrs, rewrites))
+		ui.RenderComponent(logf, w, rewritecomponents.PanelAll(addrs, rewrites))
 	}
 }
 
@@ -47,7 +48,7 @@ func HandlerDeleteRewrite(logf slogf.Logf, rewritesStorage *rewrites.CacheStorag
 		}
 		addrs := rewritesStorage.GetAddrs()
 		rewrites := rewritesStorage.GetRewrites()
-		renderComponent(logf, w, rewritecomponents.PanelAll(addrs, rewrites))
+		ui.RenderComponent(logf, w, rewritecomponents.PanelAll(addrs, rewrites))
 	}
 }
 
@@ -71,7 +72,7 @@ func HandlerAddRewriteSelf(logf slogf.Logf, rewritesStorage *rewrites.CacheStora
 		}
 		rewrites := rewritesStorage.GetRewrites()
 
-		renderComponent(logf, w, rewritecomponents.PanelSelf(rewrites))
+		ui.RenderComponent(logf, w, rewritecomponents.PanelSelf(rewrites))
 	}
 }
 
@@ -87,6 +88,6 @@ func HandlerDeleteRewriteSelf(logf slogf.Logf, rewritesStorage *rewrites.CacheSt
 		}
 		rewrites := rewritesStorage.GetRewrites()
 
-		renderComponent(logf, w, rewritecomponents.PanelSelf(rewrites))
+		ui.RenderComponent(logf, w, rewritecomponents.PanelSelf(rewrites))
 	}
 }
