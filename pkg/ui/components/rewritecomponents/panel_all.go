@@ -2,16 +2,15 @@ package rewritecomponents
 
 import (
 	"github.com/awryme/dnsproxy/pkg/rewrites"
-	"github.com/awryme/dnsproxy/pkg/ui/components/ids"
 	"github.com/willoma/bulma-gomponents"
 	"github.com/willoma/gomplements"
 )
 
-func PanelAll(addrs []rewrites.Addr, rewrites rewrites.Rewrites) gomplements.Element {
+func PanelAll(addrs []rewrites.Addr, rewrites rewrites.EntrySet) gomplements.Element {
 	allRewrites := rewrites.SortedByDomain()
 
 	panel := bulma.Panel(
-		ids.RewritesPanel.ID(),
+		IDRewritesPanel,
 		bulma.PanelHeading("Rewrites"),
 	)
 

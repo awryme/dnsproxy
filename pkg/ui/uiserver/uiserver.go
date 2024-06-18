@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 	"github.com/awryme/dnsproxy/pkg/rewrites"
-	"github.com/awryme/dnsproxy/pkg/ui/components"
+	"github.com/awryme/dnsproxy/pkg/ui/components/pages"
 	"github.com/awryme/dnsproxy/pkg/ui/staticfiles"
 	"github.com/awryme/slogf"
 	"github.com/go-chi/chi/v5"
@@ -34,16 +34,7 @@ func Start(ctx context.Context, logHandler slog.Handler, params Params) error {
 
 	staticfiles.Handle(mux)
 
-	mux.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		renderComponent(logf, w, components.MainPage(components.PageRewritesSelf, params.RewritesStorage))
-	})
-	mux.Get("/rewrites", func(w http.ResponseWriter, r *http.Request) {
-		renderComponent(logf, w, components.MainPage(components.PageRewritesAll, params.RewritesStorage))
-	})
-
-	mux.Get("/settings", func(w http.ResponseWriter, r *http.Request) {
-		renderComponent(logf, w, components.MainPage(components.PageSettings, params.SettingsInfo))
-	})
+	pages.Handle(logf, mux, params.RewritesStorage, params.SettingsInfo)
 
 	mux.Post("/add-addr", HandlerAddAddr(logf, params.RewritesStorage))
 	mux.Delete("/delete-addr/{name}", HandlerDeleteAddr(logf, params.RewritesStorage))

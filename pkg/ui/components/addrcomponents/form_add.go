@@ -1,7 +1,7 @@
 package addrcomponents
 
 import (
-	"github.com/awryme/dnsproxy/pkg/ui/components/ids"
+	"github.com/awryme/dnsproxy/pkg/ui/queryselector"
 	htmx "github.com/maragudk/gomponents-htmx"
 	"github.com/willoma/bulma-gomponents"
 	"github.com/willoma/gomplements"
@@ -10,8 +10,8 @@ import (
 func FormAdd() gomplements.Element {
 	return gomplements.Form(
 		htmx.Post("/add-addr"),
-		htmx.Target(ids.AddrPanel.Query()),
-		htmx.SelectOOB(ids.AddrSelector.Query()),
+		htmx.Target(queryselector.ID(IDAddrPanel)),
+		htmx.SelectOOB(queryselector.ID(IDAddrSelector)),
 		bulma.Field(
 			bulma.GroupedMultiline,
 			bulma.Control(

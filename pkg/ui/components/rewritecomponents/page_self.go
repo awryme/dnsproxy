@@ -7,7 +7,8 @@ import (
 )
 
 func PageSelf(rewritesStorage *rewrites.CacheStorage) gomplements.Element {
-	rewritesPanel := PanelSelf(rewritesStorage)
+	rewrites := rewritesStorage.GetRewrites()
+	rewritesPanel := PanelSelf(rewrites)
 	return bulma.Container(
 		rewritesPanel,
 	)

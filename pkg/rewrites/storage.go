@@ -16,7 +16,7 @@ type CacheStorage struct {
 	selfIP netip.Addr
 
 	// todo: close with locks
-	cachedRewrites Rewrites
+	cachedRewrites EntrySet
 	cachedAddrs    []Addr
 }
 
@@ -36,7 +36,7 @@ func NewStorage(datastore datastore.Storage, selfAddr string) (*CacheStorage, er
 	return s, nil
 }
 
-func (s *CacheStorage) GetRewrites() Rewrites {
+func (s *CacheStorage) GetRewrites() EntrySet {
 	return s.cachedRewrites
 }
 
@@ -133,7 +133,7 @@ func (s *CacheStorage) updateCaches() error {
 	return nil
 }
 
-func mapStoreRewrites(storeRewrites []datastore.Entry, storeAddrs datastore.Addrs, selfIP netip.Addr) (res Rewrites, _ error) {
+func mapStoreRewrites(storeRewrites []datastore.Entry, storeAddrs datastore.Addrs, selfIP netip.Addr) (res EntrySet, _ error) {
 	for _, storeRewrite := range storeRewrites {
 		ip, ok := mapDatastoreIP(storeRewrite.AddrName, storeAddrs, selfIP)
 		if !ok {

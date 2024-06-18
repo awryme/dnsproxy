@@ -3,7 +3,7 @@ package rewritecomponents
 import (
 	"github.com/awryme/dnsproxy/pkg/rewrites"
 	"github.com/awryme/dnsproxy/pkg/ui/components/addrcomponents"
-	"github.com/awryme/dnsproxy/pkg/ui/components/ids"
+	"github.com/awryme/dnsproxy/pkg/ui/queryselector"
 	htmx "github.com/maragudk/gomponents-htmx"
 	"github.com/willoma/bulma-gomponents"
 	"github.com/willoma/gomplements"
@@ -23,7 +23,7 @@ func FormAdd(addrs []rewrites.Addr, isSelfOnly bool) gomplements.Element {
 	return bulma.PanelBlock(
 		gomplements.Form(
 			htmx.Post(postRewriteUrl),
-			htmx.Target(ids.RewritesPanel.Query()),
+			htmx.Target(queryselector.ID(IDRewritesPanel)),
 			bulma.Field(
 				bulma.GroupedMultiline,
 				bulma.Control(

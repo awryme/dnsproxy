@@ -36,7 +36,7 @@ func (r *Replacer) ReplaceAddr(req *dns.Msg) (*dns.Msg, bool) {
 	return resp, replacedOk
 }
 
-func (r *Replacer) matchAddr(rewrites rewrites.Rewrites, q dns.Question) (dns.RR, bool) {
+func (r *Replacer) matchAddr(rewrites rewrites.EntrySet, q dns.Question) (dns.RR, bool) {
 	for _, entry := range rewrites.Strict {
 		if StrictMatcher(q.Name, entry.Domain) {
 			return makeDnsAnswer_A(q, entry.IP), true

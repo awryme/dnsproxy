@@ -13,6 +13,6 @@ func Handle(mux chi.Router) {
 	mux.Get(PathStatic+"*", func(w http.ResponseWriter, r *http.Request) {
 		fileName := chi.URLParam(r, "*")
 		filePath := fmt.Sprintf("files/%s", fileName)
-		http.ServeFileFS(w, r, Files, filePath)
+		http.ServeFileFS(w, r, embeddedFiles, filePath)
 	})
 }

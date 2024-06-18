@@ -1,4 +1,4 @@
-package components
+package pagerouter
 
 import (
 	"github.com/maragudk/gomponents"
@@ -7,7 +7,7 @@ import (
 	"github.com/willoma/bulma-gomponents"
 )
 
-func MainPage[T any](page Page[T], params T) gomponents.Node {
+func MainPage[T any](routes []Route, page Page[T], params T) gomponents.Node {
 	return html.Doctype(
 		html.HTML(
 			html.Class("theme-dark"),
@@ -25,7 +25,7 @@ func MainPage[T any](page Page[T], params T) gomponents.Node {
 				bulma.Container(
 					bulma.MaxDesktop,
 					Header(),
-					Tabbar(page.TabIdx),
+					Tabbar(routes, page),
 					page.Component(params),
 				),
 			),

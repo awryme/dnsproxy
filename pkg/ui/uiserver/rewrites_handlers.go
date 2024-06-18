@@ -69,7 +69,9 @@ func HandlerAddRewriteSelf(logf slogf.Logf, rewritesStorage *rewrites.CacheStora
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
-		renderComponent(logf, w, rewritecomponents.PanelSelf(rewritesStorage))
+		rewrites := rewritesStorage.GetRewrites()
+
+		renderComponent(logf, w, rewritecomponents.PanelSelf(rewrites))
 	}
 }
 
@@ -83,6 +85,8 @@ func HandlerDeleteRewriteSelf(logf slogf.Logf, rewritesStorage *rewrites.CacheSt
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
-		renderComponent(logf, w, rewritecomponents.PanelSelf(rewritesStorage))
+		rewrites := rewritesStorage.GetRewrites()
+
+		renderComponent(logf, w, rewritecomponents.PanelSelf(rewrites))
 	}
 }
