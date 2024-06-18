@@ -34,7 +34,7 @@ func Start(ctx context.Context, logHandler slog.Handler, params Params) error {
 
 	staticfiles.Handle(mux)
 
-	pages.Handle(logf, mux, params.RewritesStorage, params.SettingsInfo)
+	pages.Handle(mux, logf, params.RewritesStorage, params.SettingsInfo)
 
 	mux.Post("/add-addr", HandlerAddAddr(logf, params.RewritesStorage))
 	mux.Delete("/delete-addr/{name}", HandlerDeleteAddr(logf, params.RewritesStorage))

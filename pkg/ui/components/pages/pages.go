@@ -18,8 +18,8 @@ var pageTabs = []pagerouter.Route{
 	pagerouter.MakeRoute(PageSettings),
 }
 
-func Handle(logf slogf.Logf, mux chi.Router, rewritesStorage *rewrites.CacheStorage, settingsInfo map[string]string) {
-	pagerouter.HandlePage(logf, mux, pageTabs, PageRewritesSelf, rewritesStorage)
-	pagerouter.HandlePage(logf, mux, pageTabs, PageRewritesAll, rewritesStorage)
-	pagerouter.HandlePage(logf, mux, pageTabs, PageSettings, settingsInfo)
+func Handle(mux chi.Router, logf slogf.Logf, rewritesStorage *rewrites.CacheStorage, settingsInfo map[string]string) {
+	pagerouter.HandlePage(mux, logf, pageTabs, PageRewritesSelf, rewritesStorage)
+	pagerouter.HandlePage(mux, logf, pageTabs, PageRewritesAll, rewritesStorage)
+	pagerouter.HandlePage(mux, logf, pageTabs, PageSettings, settingsInfo)
 }
